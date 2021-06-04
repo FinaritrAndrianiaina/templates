@@ -6,7 +6,7 @@
 - URL shortner
 
 TODO:
-- Microblogging platform example
-- Help Desk ticketing system example
--  Add banner to README
--  Create ERD for each schema + written explanation
+- [ ] Microblogging platform example
+- [ ] Help Desk ticketing system example
+- [ ] Add banner to README
+- [ ] Create ERD for each schema + written explanation
