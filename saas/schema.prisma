@@ -1,57 +1,52 @@
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 enum UserRole {
-    USER
-    ADMIN
+  USER
+  ADMIN
 }
 
 model User {
-    id              String   @id @default(uuid())
-    createdAt       DateTime @default(now())
-    updatedAt       DateTime @updatedAt
-    firstName       String
-    lastName        String
-    email           String   @unique
-    password        String
-    phoneNumber     Int
-    profileImage    String
-    isEmailVerified Boolean
-    role            UserRole @default(USER)
-    Account         Account? @relation(fields: [accountId], references: [id])
-    accountId       String?
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String?
+  email     String
+  role      UserRole @default(USER)
+  account   Account? @relation(fields: [accountId], references: [id])
+  accountId String?
 }
 
 enum PlanType {
-    FREE
-    PREMIUM
+  FREE
+  PREMIUM
 }
 
 model Account {
-    id                   String   @id @default(uuid())
-    createdAt            DateTime @default(now())
-    updatedAt            DateTime @updatedAt
-    invites              Invite[]
-    users                User[]
-    stripeCustomerId     String
-    stripeSubscriptionId String
-    plan                 PlanType
-    referrer             String?
-    isActive             Boolean
+  id                   String   @id @default(uuid())
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  invites              Invite[]
+  users                User[]
+  stripeCustomerId     String
+  stripeSubscriptionId String
+  plan                 PlanType
+  referrer             String?
+  isActive             Boolean
 
 }
 
 model Invite {
-    id        String   @id @default(uuid())
-    dateSent  DateTime @default(now())
-    email     String
-    Account   Account? @relation(fields: [accountId], references: [id])
-    accountId String?
-    isValid   Boolean
+  id        String   @id @default(uuid())
+  dateSent  DateTime @default(now())
+  email     String
+  account   Account? @relation(fields: [accountId], references: [id])
+  accountId String?
+  isValid   Boolean  @default(true)
 }
