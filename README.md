@@ -31,7 +31,7 @@ This repository contains a number of prisma schema examples that act as a starti
 
 ## Contributing to the project
 
-Before contributing, check out the [contribution](https://github.com/prisma/prisma-schema-examples/blob/main/contributing.md) guidelines 
+Before contributing, check out the [contribution](https://github.com/prisma/prisma-schema-examples/blob/main/CONTRIBUTING.MD) guidelines 
 
 ## Examples to  be added
 - [ ] Microblogging platform
