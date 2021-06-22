@@ -1,6 +1,3 @@
-# Prisma schema examples
-
-<br />
 
 <div align="center">
   <h1>Prisma Examples</h1>
