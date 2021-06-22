@@ -20,7 +20,7 @@
 
 <hr>
 
-<div align="center">
+
 
 This repository contains a number of prisma schema examples that act as a starting point when building your backend using Prisma. Each example has its own database schema diagram and an explanation.
 
