@@ -5,7 +5,12 @@ const prisma = new PrismaClient();
 const data = Array.from({ length: 4 }).map(() => ({
   email: faker.internet.email(),
   name: faker.name.firstName(),
-  links: Array.from({ length: Math.floor(Math.random() * 5) + 1 }).map(() => ({
+  links: Array.from({
+    length: faker.datatype.number({
+      min: 1,
+      max: 5,
+    }),
+  }).map(() => ({
     url: faker.internet.url(),
     shortUrl: faker.internet.domainWord(),
   })),

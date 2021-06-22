@@ -7,10 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-}
-
 model Link {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
