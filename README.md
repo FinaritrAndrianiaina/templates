@@ -39,3 +39,5 @@ Before contributing, check out the [contribution](https://github.com/prisma/pris
 ## Examples to  be added
 - [ ] Microblogging platform
 - [ ] Help Desk ticketing system
+- [ ] Budget tracker
+- [ ] Habit tracker
