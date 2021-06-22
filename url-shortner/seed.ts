@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import * as faker from "faker";
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+import * as faker from 'faker'
+const prisma = new PrismaClient()
 
 const NUMBER_OF_USERS = 4
 const MAX_NUMBER_OF_LINKS = 5
@@ -17,7 +17,7 @@ const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
     url: faker.internet.url(),
     shortUrl: faker.internet.domainWord(),
   })),
-}));
+}))
 
 export const seed = async () => {
   for (let entry of data) {
@@ -29,6 +29,6 @@ export const seed = async () => {
           create: entry.links,
         },
       },
-    });
+    })
   }
-};
+}
