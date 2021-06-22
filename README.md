@@ -1,6 +1,3 @@
-# Ready-to-use Prisma schema examples
-
-<br />
 
 <div align="center">
   <h1>Prisma Examples</h1>
@@ -20,23 +17,24 @@
 
 <hr>
 
-<div align="center">
+
 
 This repository contains a number of prisma schema examples that act as a starting point when building your backend using Prisma. Each example has its own database schema diagram and an explanation.
 
 ## Examples
 
-- [Music Streaming service]()   
-- [Rentals platform]()
-- [SaaS]()
-- [URL shortner]()
+- [Music Streaming service](https://github.com/prisma/prisma-schema-examples/tree/main/music-streaming-service)   
+- [Rentals platform](https://github.com/prisma/prisma-schema-examples/tree/main/rentals-platform)
+- [SaaS](https://github.com/prisma/prisma-schema-examples/tree/main/saas)
+- [URL shortner](https://github.com/prisma/prisma-schema-examples/tree/main/url-shortner)
 
 
 ## Contributing to the project
 
-Before contributing, check out the [contribution](https://github.com/prisma/prisma-schema-examples/blob/main/contributing.md) guidelines  
+Before contributing, check out the [contribution](https://github.com/prisma/prisma-schema-examples/blob/main/CONTRIBUTING.MD) guidelines 
+
 ## Examples to  be added
-- [ ] Microblogging platform example
-- [ ] Help Desk ticketing system example
-- [ ] Add banner to README
-- [ ] Create ERD for each schema + written explanation
+- [ ] Microblogging platform
+- [ ] Help Desk ticketing system
+- [ ] Budget tracker
+- [ ] Habit tracker
