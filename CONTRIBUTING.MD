@@ -12,7 +12,7 @@ Every example should follow a number of guidelines:
 - Easily extensible.
 - Follow [Prisma schema naming conventions](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference/#naming-conventions).
 - Clear description about the different models and the different relations between them.
-- Database schema diagram (can be generated using [`prisma-dbml-generator`](https://github.com/notiz-dev/prisma-dbml-generator).
+- Database schema diagram (can be generated using [`prisma-dbml-generator`](https://github.com/notiz-dev/prisma-dbml-generator)).
 
 ## Ways to contribute
 
