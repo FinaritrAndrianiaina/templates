@@ -1,4 +1,4 @@
-# Ready-to-use Prisma schema examples
+# Prisma schema examples
 
 <br />
 
