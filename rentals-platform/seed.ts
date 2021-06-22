@@ -54,56 +54,54 @@ const rooms = Array.from({
   })),
 }))
 
-const data = Array.from({ length: NUMBER_OF_USERS }).map((_, i) => {
-  return {
-    email: faker.internet.email(),
-    name: faker.name.firstName(),
-    reviews: Array.from({
-      length: faker.datatype.number({
-        max: 1,
-        min: 4,
-      }),
-    }).map(() => ({
-      comment: faker.lorem.paragraph(),
-      rating: faker.datatype.number({
-        max: 1,
-        min: 5,
-      }),
-    })),
-    // create random reservations per user
-    reservations: Array.from({
-      length: faker.datatype.number({
-        min: 1,
-        max: 4,
-      }),
-    }).map(() => {
-      const startDate = faker.date.past()
-      const endDate = faker.date.future()
-      const price = faker.datatype.number({
-        min: 50,
-        max: 600,
-      })
-      return {
-        startDate,
-        endDate,
-        price,
-        total:
-          Math.ceil(Math.abs(+endDate - +startDate) / (1000 * 60 * 60 * 24)) *
-          price, // difference between dates * price
-        room: {
-          connect: {
-            id: roomIds[
-              faker.datatype.number({
-                min: 0,
-                max: NUMBER_OF_ROOMS - 1,
-              })
-            ],
-          },
-        },
-      }
+const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
+  email: faker.internet.email(),
+  name: faker.name.firstName(),
+  reviews: Array.from({
+    length: faker.datatype.number({
+      max: 1,
+      min: 4,
     }),
-  }
-})
+  }).map(() => ({
+    comment: faker.lorem.paragraph(),
+    rating: faker.datatype.number({
+      max: 1,
+      min: 5,
+    }),
+  })),
+  // create random reservations per user
+  reservations: Array.from({
+    length: faker.datatype.number({
+      min: 1,
+      max: 4,
+    }),
+  }).map(() => {
+    const startDate = faker.date.past()
+    const endDate = faker.date.future()
+    const price = faker.datatype.number({
+      min: 50,
+      max: 600,
+    })
+    return {
+      startDate,
+      endDate,
+      price,
+      total:
+        Math.ceil(Math.abs(+endDate - +startDate) / (1000 * 60 * 60 * 24)) *
+        price, // difference between dates * price
+      room: {
+        connect: {
+          id: roomIds[
+            faker.datatype.number({
+              min: 0,
+              max: NUMBER_OF_ROOMS - 1,
+            })
+          ],
+        },
+      },
+    }
+  }),
+}))
 
 export const seed = async () => {
   try {
