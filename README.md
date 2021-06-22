@@ -37,5 +37,5 @@ This repository contains a number of prisma schema examples that act as a starti
 Before contributing, check out the [contribution](https://github.com/prisma/prisma-schema-examples/blob/main/contributing.md) guidelines 
 
 ## Examples to  be added
-- [ ] Microblogging platform example
-- [ ] Help Desk ticketing system example
+- [ ] Microblogging platform
+- [ ] Help Desk ticketing system
