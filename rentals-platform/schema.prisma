@@ -1,94 +1,95 @@
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 enum UserRole {
-    USER
-    ADMIN
+  USER
+  ADMIN
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
 }
 
 model User {
-    id              String        @id @default(uuid())
-    createdAt       DateTime      @default(now())
-    updatedAt       DateTime      @updatedAt
-    email           String        @unique
-    isEmailVerified Boolean
-    firstName       String
-    lastName        String
-    password        String
-    phoneNumber     Int
-    profileImage    String
-    reservations    Reservation[]
-    rooms           Room[]
-    role            UserRole      @default(USER)
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  email        String        @unique
+  name         String
+  reservations Reservation[]
+  role         UserRole      @default(USER)
+  reviews      Review[]
 }
 
 model Reservation {
-    id        String   @id @default(uuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    userId    String?
-    roomId    String?
-    user      User?    @relation(fields: [userId], references: [id])
-    Room      Room?    @relation(fields: [roomId], references: [id])
-    startDate DateTime
-    endDate   DateTime
-    price     Int
-    total     Int
-    reviews   Review[]
-}
-
-model Room {
-    id                 String        @id @default(uuid())
-    createdAt          DateTime      @default(now())
-    updatedAt          DateTime      @updatedAt
-    reservations       Reservation[]
-    totalOccupancy     Int
-    totalBedrooms      Int
-    totalBathrooms     Int
-    summary            String
-    address            String
-    hasTV              Boolean
-    hasAirConditioning Boolean
-    hasHeating         Boolean
-    hasWIFI            Boolean
-    price              Int
-    owner              User?         @relation(fields: [ownerId], references: [id])
-    ownerId            String?
-    roomType           RoomType
-    isSmoking          Boolean
-    media              Media[]
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  startDate DateTime
+  endDate   DateTime
+  price     Int
+  total     Int
+  room      Room?    @relation(fields: [roomId], references: [id])
+  roomId    String?
 }
 
 enum RoomType {
-    SINGLE
-    DOUBLE
-    TRIPLE
-    QUAD
-    QUEEN
-    KING
-    TWIN
-    STUDIO
-    SUITE
-    ACCESSIBLE
+  SINGLE
+  DOUBLE
+  TRIPLE
+  QUAD
+  QUEEN
+  KING
+  TWIN
+  STUDIO
+  SUITE
+  ACCESSIBLE
+}
+
+model Room {
+  id                 String        @id @default(uuid())
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  reservations       Reservation[]
+  totalOccupancy     Int           @default(5)
+  totalBedrooms      Int           @default(5)
+  totalBathrooms     Int           @default(5)
+  summary            String?
+  address            String
+  isSmoking          Boolean       @default(false)
+  hasTV              Boolean       @default(true)
+  hasAirConditioning Boolean       @default(true)
+  hasHeating         Boolean       @default(true)
+  hasWIFI            Boolean       @default(true)
+  price              Int
+  roomType           RoomType
+  media              Media[]
+
 }
 
 model Review {
-    id            String      @id @default(uuid())
-    rating        Int
-    comment       String
-    reservation   Reservation @relation(fields: [reservationId], references: [id])
-    reservationId String
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rating    Int
+  comment   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model Media {
-    id       String  @id @default(uuid())
-    Room     Room?   @relation(fields: [roomId], references: [id])
-    roomId   String?
-    fileName String
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  room      Room?    @relation(fields: [roomId], references: [id])
+  roomId    String?
+  fileName  String
 }
