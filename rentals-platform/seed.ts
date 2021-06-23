@@ -47,11 +47,6 @@ const rooms = Array.from({
   totalBedrooms: faker.datatype.number({ min: 1, max: 5 }),
   totalBathrooms: faker.datatype.number({ min: 1, max: 5 }),
   summary: faker.lorem.paragraph(),
-  media: Array.from({
-    length: faker.datatype.number({ min: 1, max: 5 }),
-  }).map(() => ({
-    fileName: faker.image.imageUrl(),
-  })),
 }))
 
 const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
