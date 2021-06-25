@@ -47,6 +47,11 @@ const rooms = Array.from({
   totalBedrooms: faker.datatype.number({ min: 1, max: 5 }),
   totalBathrooms: faker.datatype.number({ min: 1, max: 5 }),
   summary: faker.lorem.paragraph(),
+  media: Array.from({
+    length: faker.datatype.number({ min: 1, max: 5 }),
+  }).map(() => ({
+    fileName: faker.image.imageUrl(),
+  })),
 }))
 
 const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
@@ -100,9 +105,21 @@ const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
 
 export const seed = async () => {
   try {
-    await prisma.room.createMany({
-      data: rooms,
-    })
+    rooms.forEach(
+      async (room) =>
+        await prisma.room.create({
+          data: {
+            id: room.id,
+            address: room.address,
+            price: room.price,
+            summary: room.summary,
+            roomType: room.roomType,
+            media: {
+              create: room.media,
+            },
+          },
+        }),
+    )
 
     for (let entry of data) {
       await prisma.user.create({
@@ -118,8 +135,9 @@ export const seed = async () => {
         },
       })
     }
-    return console.log('Database has been seeded!')
+    await prisma.$disconnect()
   } catch (error) {
     console.error(error)
+    await prisma.$disconnect()
   }
 }
