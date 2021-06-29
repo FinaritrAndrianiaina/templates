@@ -23,7 +23,7 @@ This repository contains a number of prisma schema examples that act as a starti
 - [Music Streaming service](https://github.com/prisma/prisma-schema-examples/tree/main/musicStreamingService)
 - [Rentals platform](https://github.com/prisma/prisma-schema-examples/tree/main/rentalsPlatform)
 - [SaaS](https://github.com/prisma/prisma-schema-examples/tree/main/saas)
-- [URL shortener](https://github.com/prisma/prisma-schema-examples/tree/main/urlPhortener)
+- [URL shortener](https://github.com/prisma/prisma-schema-examples/tree/main/urlShortener)
 
 ## Contributing to the project
 
