@@ -12,18 +12,18 @@ const userIds = Array.from({
 export async function seed() {
   const prisma = new PrismaClient()
 
-  // create artists
-  await prisma.artist.createMany({
-    data: Array.from({ length: NUMBER_OF_ARTISTS }).map(() => ({
-      name: faker.name.firstName(),
-    })),
-  })
+  try {
+    // Create artists
+    await prisma.artist.createMany({
+      data: Array.from({ length: NUMBER_OF_ARTISTS }).map(() => ({
+        name: faker.name.firstName(),
+      })),
+    })
 
-  const artists = await prisma.artist.findMany()
+    const artists = await prisma.artist.findMany()
 
-  // create songs for each artist
-  artists.forEach(
-    async (artist) =>
+    // Create songs for each artist
+    for (const artist of artists) {
       await prisma.album.create({
         data: {
           cover: faker.image.imageUrl(),
@@ -47,17 +47,17 @@ export async function seed() {
             })),
           },
         },
-      }),
-  )
+      })
+    }
 
-  const songs = await prisma.song.findMany()
+    // Create songs
+    const songs = await prisma.song.findMany()
 
-  // create users
-  userIds.forEach(
-    async (id) =>
+    for (const userId of userIds) {
+      // Create users
       await prisma.user.create({
         data: {
-          id,
+          id: userId,
           email: faker.internet.email(),
           name: faker.name.firstName(),
           interactions: {
@@ -76,20 +76,17 @@ export async function seed() {
             })),
           },
         },
-      }),
-  )
+      })
 
-  userIds.forEach(
-    async (id) =>
+      // Create Playlists
       await prisma.playlist.create({
         data: {
           name: faker.random.words(2),
           user: {
             connect: {
-              id,
+              id: userId,
             },
           },
-          // userId: id,
           // each playlist will have a random list of songs
           songs: {
             connect: songs
@@ -100,8 +97,11 @@ export async function seed() {
               .map(({ id }) => ({ id })),
           },
         },
-      }),
-  )
-
-  await prisma.$disconnect()
+      })
+    }
+  } catch (e) {
+    console.error(e)
+  } finally {
+    await prisma.$disconnect()
+  }
 }
