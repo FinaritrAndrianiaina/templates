@@ -1,6 +1,5 @@
 import { PrismaClient, RoomType } from '@prisma/client'
 import * as faker from 'faker'
-const prisma = new PrismaClient()
 
 const roomTypes: RoomType[] = [
   'ACCESSIBLE',
@@ -103,7 +102,9 @@ const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
   }),
 }))
 
-export const seed = async () => {
+export async function seed() {
+  const prisma = new PrismaClient()
+
   try {
     rooms.forEach(
       async (room) =>
@@ -135,9 +136,9 @@ export const seed = async () => {
         },
       })
     }
-    await prisma.$disconnect()
   } catch (error) {
     console.error(error)
+  } finally {
     await prisma.$disconnect()
   }
 }
