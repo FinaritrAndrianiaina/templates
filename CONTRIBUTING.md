@@ -17,17 +17,16 @@ Every example should follow a number of guidelines:
 
 ## Ways to contribute
 
-The easiest way to contribute is by adding a missing example. Check [this](https://github.com/prisma/prisma-schema-examples/issues/1) GitHub issue to see which examples are currently missing. 
+The easiest way to contribute is by adding a missing example. Check [this](https://github.com/prisma/prisma-schema-examples/issues/1) GitHub issue to see which examples are currently missing.
 
 ### Adding a new example
 
 Before submitting a PR for a new example, please first open an issue that explains the idea of the example and specifies what it will look like (e.g. how the Prisma datamodel will be defined or what kind of API will be built). It'll then be discussed in the issue whether your example is going to be added to the collection. To accelerate the process, you can ping @nikolasburk or @m-abdelwahab in the public [Prisma Slack](https://slack.prisma.io).
 
-Once approved, you can add your example to [list of missing examples](https://github.com/prisma/prisma-schema-examples/issues/1) and start implementing it. 
+Once approved, you can add your example to [list of missing examples](https://github.com/prisma/prisma-schema-examples/issues/1) and start implementing it in a PR. Do note that all examples on `main` will automatically show up on the [Prisma Data Platform](https://cloud.prisma.io)
 
 ### Improving an existing example
 
 If you find that an example can be designed better, please feel free to open an issue or submit a PR with your suggestions. To accelerate the process, you can ping @nikolasburk or @m-abdelwahab in the public [Prisma Slack](https://slack.prisma.io).
 
 Once approved, you can go ahead and implement the changes.
-
