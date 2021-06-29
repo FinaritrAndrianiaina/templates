@@ -1,6 +1,5 @@
 import { PrismaClient, PlanType } from '@prisma/client'
 import * as faker from 'faker'
-const prisma = new PrismaClient()
 
 const plans: PlanType[] = ['FREE', 'PREMIUM']
 const NUMBER_OF_USERS = 4
@@ -23,24 +22,32 @@ const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
   })),
 }))
 
-export const seed = async () => {
-  for (let entry of data) {
-    await prisma.user.create({
-      data: {
-        name: entry.name,
-        email: entry.email,
-        account: {
-          create: {
-            plan: entry.account.plan,
-            stripeCustomerId: entry.account.stripeCustomerId,
-            stripeSubscriptionId: entry.account.stripeSubscriptionId,
-            isActive: true,
-            invites: {
-              create: entry.invites,
+export async function seed() {
+  const prisma = new PrismaClient()
+
+  try {
+    for (let entry of data) {
+      await prisma.user.create({
+        data: {
+          name: entry.name,
+          email: entry.email,
+          account: {
+            create: {
+              plan: entry.account.plan,
+              stripeCustomerId: entry.account.stripeCustomerId,
+              stripeSubscriptionId: entry.account.stripeSubscriptionId,
+              isActive: true,
+              invites: {
+                create: entry.invites,
+              },
             },
           },
         },
-      },
-    })
+      })
+    }
+  } catch (e) {
+    console.error(e)
+  } finally {
+    await prisma.$disconnect()
   }
 }
