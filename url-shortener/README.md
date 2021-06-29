@@ -1,6 +1,6 @@
-# URL Shortner
+# URL Shortener
 
-![Database diagram](diagram.png)
+![Database diagram](https://raw.githubusercontent.com/prisma/prisma-schema-examples/main/url-shortener/diagram.png)
 (Generated via https://github.com/notiz-dev/prisma-dbml-generator + https://dbdiagram.io)
 
 ### Setting this project up locally

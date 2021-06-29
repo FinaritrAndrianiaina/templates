@@ -2,7 +2,7 @@
 
 Prisma schema for a rentals platform
 
-![Database diagram](diagram.png)
+![Database diagram](https://raw.githubusercontent.com/prisma/prisma-schema-examples/main/rentals-platform/diagram.png)
 (Generated via https://github.com/notiz-dev/prisma-dbml-generator + https://dbdiagram.io)
 
 ### Setting this project up locally
