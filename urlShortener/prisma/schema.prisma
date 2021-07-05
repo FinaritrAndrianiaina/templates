@@ -1,3 +1,6 @@
+// Schema for a simple URL shortener
+// This schema tracks short links by associating them to a user
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
