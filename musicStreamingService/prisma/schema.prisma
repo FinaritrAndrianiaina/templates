@@ -1,3 +1,6 @@
+// Schema for a fictional music streaming service
+// This service contains songs, albums, artists & playlists, and tracks user interactions with each of them
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

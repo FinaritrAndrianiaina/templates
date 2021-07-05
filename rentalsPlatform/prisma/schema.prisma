@@ -1,3 +1,6 @@
+// Schema for a fictional hotel
+// This hotel tracks rooms, user reservations & reviews
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

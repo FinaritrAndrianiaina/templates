@@ -1,3 +1,6 @@
+// Schema for an identity service for a SaaS
+// This service tracks existing users & their accounts, as well as invites for users who haven't joined yet
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
