@@ -10,11 +10,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Settings {
-  key   String @id @default(uuid())
-  value Json
-}
-
 model User {
   id           String        @id @default(uuid())
   createdAt    DateTime      @default(now())
