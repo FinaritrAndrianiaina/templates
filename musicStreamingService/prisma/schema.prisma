@@ -21,7 +21,6 @@ model User {
   updatedAt    DateTime      @updatedAt
   name         String
   email        String        @unique
-  role         UserRole      @default(USER)
   interactions Interaction[]
   playlists    Playlist[]
 }
