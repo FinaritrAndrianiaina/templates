@@ -1,6 +1,6 @@
 # Rentals Platform
 
-Prisma schema for a rentals platform
+![Database Diagram](https://github.com/prisma/prisma-schema-examples/blob/cloud/rentalsPlatform/diagram.png?raw=true)
 
 (Generated via https://github.com/notiz-dev/prisma-dbml-generator + https://dbdiagram.io)
 
