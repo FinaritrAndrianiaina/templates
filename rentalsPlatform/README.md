@@ -1,6 +1,6 @@
 # Rentals Platform
 
-![Database Diagram](https://github.com/prisma/prisma-schema-examples/blob/cloud/rentalsPlatform/diagram.png?raw=true)
+![Database Diagram](https://github.com/prisma/prisma-schema-examples/blob/main/rentalsPlatform/diagram.png?raw=true)
 
 (Generated via https://github.com/notiz-dev/prisma-dbml-generator + https://dbdiagram.io)
 
