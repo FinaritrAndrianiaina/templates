@@ -1,4 +1,4 @@
-name: Test Prisma Templates
+name: Test Prisma Schema Templates
 on: 
   pull_request
 
