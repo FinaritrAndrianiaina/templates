@@ -34,12 +34,12 @@ describe('Seed and run script against Postgres', () => {
      * db push, seed, run dev script
      * delete working folder
      */
-    const changeDir = `cd ../templates/${templateName} &&`
+    const changeDir = `cd ../${templateName} &&`
 
     log('create dir')
-    execa.commandSync(`mkdir -p ../templates/${templateName}`)
+    execa.commandSync(`mkdir -p ../${templateName}`)
     log('copy contents')
-    execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../templates`)
+    execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../`)
     log('change dir and install deps')
     execa.commandSync(`${changeDir} yarn`)
 
@@ -55,7 +55,7 @@ describe('Seed and run script against Postgres', () => {
     const script = execa.commandSync(`${changeDir} npm run dev`)
     expect(script.exitCode).toBe(0)
 
-    const delDir = execa.commandSync(`rm -rf ../templates`)
+    const delDir = execa.commandSync(`rm -rf ../`)
     expect(delDir.exitCode).toBe(0)
   })
 })
