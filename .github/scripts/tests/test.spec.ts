@@ -28,16 +28,14 @@ const projects = [
 describe('Seed and run script against Postgres', () => {
   test.each(projects)('$templateName', async ({ templateName }) => {
     /**
-     * create working folder called templates
-     * copy files to templates/
+     * create working folder
+     * copy files to /
      * install dependencies 
      * db push, seed, run dev script
      * delete working folder
      */
     const changeDir = `cd ../${templateName} &&`
 
-    log('create dir')
-    execa.commandSync(`mkdir -p ../${templateName}`)
     log('copy contents')
     execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../`)
     log('change dir and install deps')
