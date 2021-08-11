@@ -27,12 +27,10 @@ const projects = [
 describe('Seed and run script against Postgres', () => {
   test.each(projects)('$templateName', async ({ templateName }) => {
     /**
-     * create working folder
-     * copy files to folder
-     * install deps 
-     * db push -> assertion
-     * seed -> assertion
-     * run script -> assertion
+     * create working folder called templates
+     * copy files to templates/
+     * install dependencies 
+     * db push, seed, run dev script
      * delete working folder
      */
     const changeDir = `cd ../templates/${templateName} &&`
