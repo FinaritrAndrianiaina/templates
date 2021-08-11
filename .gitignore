@@ -22,3 +22,4 @@ dev.db
 
 # We do not want to clone a lockfile to the user's repo
 yarn.lock
+.github/templates
