@@ -1,7 +1,5 @@
 name: Test Prisma Schema Templates
-on: 
-  push:
-    branches: [ tests ]
+on:
   pull_request:
     branches: [ main, cloud ]
 
