@@ -39,7 +39,7 @@ describe('Seed and run script against Postgres', () => {
     execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../templates`)
     execa.commandSync(`${changeDir} yarn`)
 
-    execa.commandSync(`${changeDir} yarn prisma migrate reset --force --schema prisma/schema.prisma`)
+    // execa.commandSync(`${changeDir} yarn prisma migrate reset --force --schema prisma/schema.prisma`)
 
     const dbPush = execa.commandSync(`${changeDir} yarn prisma db push --schema prisma/schema.prisma`)
     expect(dbPush.exitCode).toBe(0)
