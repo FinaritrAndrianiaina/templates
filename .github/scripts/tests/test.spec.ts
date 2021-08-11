@@ -1,5 +1,6 @@
 import execa from 'execa'
 
+const log = console.log
 /**
  * TODO: Set up mysql test.yml
  * TODO: setup matrix for databases from env
@@ -35,12 +36,16 @@ describe('Seed and run script against Postgres', () => {
      */
     const changeDir = `cd ../templates/${templateName} &&`
 
+    log('create dir')
     execa.commandSync(`mkdir -p ../templates/${templateName}`)
+    log('copy contents')
     execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../templates`)
+    log('change dir and install deps')
     execa.commandSync(`${changeDir} yarn`)
 
     // execa.commandSync(`${changeDir} yarn prisma migrate reset --force --schema prisma/schema.prisma`)
 
+    log('db push')
     const dbPush = execa.commandSync(`${changeDir} yarn prisma db push --schema prisma/schema.prisma`)
     expect(dbPush.exitCode).toBe(0)
 
