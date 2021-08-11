@@ -27,6 +27,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14.x
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-unit-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
-      - run: yarn test
+      - run: yarn run test
 
