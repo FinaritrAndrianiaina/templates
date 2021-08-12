@@ -50,6 +50,5 @@ describe('Seed and run script against Postgres', () => {
     expect(script.exitCode).toBe(0)
 
     const delDir = execa.commandSync(`rm -rf ../${templateName}`)
-    expect(delDir.exitCode).toBe(0)
   })
 })
