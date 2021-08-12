@@ -1,6 +1,4 @@
 import execa from 'execa'
-
-const log = console.log
 /**
  * TODO: Set up mysql test.yml
  * TODO: setup matrix for databases from env
@@ -34,21 +32,18 @@ describe('Seed and run script against Postgres', () => {
      * db push, seed, run dev script
      * delete working folder
      */
-    const changeDir = `cd ../${templateName} &&`
+    const changeDir = `--cwd=../${templateName}`
 
-    log('copy contents')
     execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../`)
-    log('change dir and install deps')
-    execa.commandSync(`${changeDir} yarn`)
-
-    log('db push')
-    const dbPush = execa.commandSync(`${changeDir} yarn prisma db push --schema prisma/schema.prisma`)
+    execa.commandSync(` yarn ${changeDir}`)
+    execa.commandSync('ls -1pa ../')
+    const dbPush = execa.commandSync(` yarn ${changeDir} prisma db push --schema prisma/schema.prisma`)
     expect(dbPush.exitCode).toBe(0)
 
-    const seed = execa.commandSync(`${changeDir} yarn prisma db seed --preview-feature --schema prisma/schema.prisma`)
+    const seed = execa.commandSync(`yarn ${changeDir} prisma db seed --preview-feature --schema prisma/schema.prisma`)
     expect(seed.exitCode).toBe(0)
 
-    const script = execa.commandSync(`${changeDir} yarn run dev`)
+    const script = execa.commandSync(`yarn ${changeDir} run dev`)
     expect(script.exitCode).toBe(0)
 
     const delDir = execa.commandSync(`rm -rf ../${templateName}`)
