@@ -31,6 +31,7 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-unit-${{ hashFiles('**/yarn.lock') }}
+      - run: echo "/home/runner/work/templates/.github/scripts" >> $GITHUB_PATH
       - run: yarn install
       - run: yarn run test
 

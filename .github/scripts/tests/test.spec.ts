@@ -8,7 +8,7 @@ const log = console.log
  * TODO: Create lookup for different database
  * TODO: make run dynamic - modify provider to mysql
  * TODO: make run dynamic - modify provider to sqlserver and add previewFeatures
- * TODO: add type-safety to this thing
+ * TODO: add type-safety to this
  */
 const projects = [
   {
@@ -41,8 +41,6 @@ describe('Seed and run script against Postgres', () => {
     log('change dir and install deps')
     execa.commandSync(`${changeDir} yarn`)
 
-    // execa.commandSync(`${changeDir} yarn prisma migrate reset --force --schema prisma/schema.prisma`)
-
     log('db push')
     const dbPush = execa.commandSync(`${changeDir} yarn prisma db push --schema prisma/schema.prisma`)
     expect(dbPush.exitCode).toBe(0)
@@ -50,10 +48,10 @@ describe('Seed and run script against Postgres', () => {
     const seed = execa.commandSync(`${changeDir} yarn prisma db seed --preview-feature --schema prisma/schema.prisma`)
     expect(seed.exitCode).toBe(0)
 
-    const script = execa.commandSync(`${changeDir} npm run dev`)
+    const script = execa.commandSync(`${changeDir} yarn run dev`)
     expect(script.exitCode).toBe(0)
 
-    const delDir = execa.commandSync(`rm -rf ../`)
+    const delDir = execa.commandSync(`rm -rf ../${templateName}`)
     expect(delDir.exitCode).toBe(0)
   })
 })
