@@ -28,7 +28,8 @@ describe('Seed and run script against Postgres', () => {
     /**
      * create working folder
      * copy files to /
-     * install dependencies 
+     * install dependencies
+     * migrate reset
      * db push, seed, run dev script
      * delete working folder
      */
@@ -36,7 +37,9 @@ describe('Seed and run script against Postgres', () => {
 
     execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../`)
     execa.commandSync(` yarn ${changeDir}`)
-    execa.commandSync('ls -1pa ../')
+
+    execa.commandSync(`yarn ${changeDir} prisma migrate reset --force`)
+    
     const dbPush = execa.commandSync(` yarn ${changeDir} prisma db push --schema prisma/schema.prisma`)
     expect(dbPush.exitCode).toBe(0)
 
