@@ -1,8 +1,9 @@
 import execa from 'execa'
+import * as FS from 'fs-jetpack'
+
 /**
  * TODO: Set up mysql test.yml
  * TODO: setup matrix for databases from env
- * TODO: fetch env values from run
  * TODO: Create lookup for different database
  * TODO: make run dynamic - modify provider to mysql
  * TODO: make run dynamic - modify provider to sqlserver and add previewFeatures
@@ -23,33 +24,29 @@ const projects = [
   },
 ]
 
-describe('Seed and run script against Postgres', () => {
-  test.each(projects)('$templateName', async ({ templateName }) => {
+describe('Seed and run script', () => {
+  test.each(projects)('$templateName against Postgres', async ({ templateName }) => {
     /**
-     * create working folder
-     * copy files to /
+     * cd to template
      * install dependencies
      * migrate reset
-     * db push, seed, run dev script
-     * delete working folder
+     * db push,
+     * seed, 
+     * run dev script
      */
-    const changeDir = `--cwd=../${templateName}`
+    const options = { cwd: `../../${templateName}` }
 
-    execa.commandSync(`rsync -avr --exclude="../../${templateName}/node_modules" ../../${templateName} ../`)
-    execa.commandSync(` yarn ${changeDir}`)
+    execa.commandSync(` yarn`, options)
 
-    execa.commandSync(`yarn ${changeDir} prisma migrate reset --force`)
-    
-    const dbPush = execa.commandSync(` yarn ${changeDir} prisma db push --schema prisma/schema.prisma`)
+    execa.commandSync(`yarn prisma migrate reset --force`, options)
+
+    const dbPush = execa.commandSync(`yarn prisma db push --schema prisma/schema.prisma`, options)
     expect(dbPush.exitCode).toBe(0)
 
-    const seed = execa.commandSync(`yarn ${changeDir} prisma db seed --preview-feature --schema prisma/schema.prisma`)
+    const seed = execa.commandSync(`yarn prisma db seed --preview-feature --schema prisma/schema.prisma`, options)
     expect(seed.exitCode).toBe(0)
 
-    const script = execa.commandSync(`yarn ${changeDir} run dev`)
+    const script = execa.commandSync(`yarn run dev`, options)
     expect(script.exitCode).toBe(0)
-
-    const delDir = execa.commandSync(`rm -rf ../${templateName}`)
-    expect(delDir.exitCode).toBe(0)
   })
 })
