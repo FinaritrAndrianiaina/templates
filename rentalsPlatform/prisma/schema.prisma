@@ -10,10 +10,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum UserRole {
-  USER
-  ADMIN
-}
 
 model User {
   id           String        @id @default(uuid())
@@ -22,7 +18,6 @@ model User {
   email        String        @unique
   name         String
   reservations Reservation[]
-  role         UserRole      @default(USER)
   reviews      Review[]
 }
 
@@ -38,19 +33,6 @@ model Reservation {
   total     Int
   room      Room?    @relation(fields: [roomId], references: [id])
   roomId    String?
-}
-
-enum RoomType {
-  SINGLE
-  DOUBLE
-  TRIPLE
-  QUAD
-  QUEEN
-  KING
-  TWIN
-  STUDIO
-  SUITE
-  ACCESSIBLE
 }
 
 model Room {
@@ -69,7 +51,6 @@ model Room {
   hasHeating         Boolean       @default(true)
   hasWIFI            Boolean       @default(true)
   price              Int
-  roomType           RoomType
   media              Media[]
 
 }

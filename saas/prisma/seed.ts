@@ -1,7 +1,6 @@
-import { PrismaClient, PlanType } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import * as faker from 'faker'
 
-const plans: PlanType[] = ['FREE', 'PREMIUM']
 const NUMBER_OF_USERS = 4
 const NUMBER_OF_INVITES = 4
 
@@ -9,7 +8,6 @@ const data = Array.from({ length: NUMBER_OF_USERS }).map(() => ({
   email: faker.internet.email(),
   name: faker.name.firstName(),
   account: {
-    plan: plans[faker.datatype.number({ min: 0, max: plans.length - 1 })], // pick random plan
     stripeCustomerId: faker.datatype.uuid(),
     stripeSubscriptionId: faker.datatype.uuid(),
     isActive: true,
@@ -33,7 +31,6 @@ export async function seed() {
           email: entry.email,
           account: {
             create: {
-              plan: entry.account.plan,
               stripeCustomerId: entry.account.stripeCustomerId,
               stripeSubscriptionId: entry.account.stripeSubscriptionId,
               isActive: true,
@@ -51,3 +48,5 @@ export async function seed() {
     await prisma.$disconnect()
   }
 }
+
+seed()

@@ -1,18 +1,5 @@
-import { PrismaClient, RoomType } from '@prisma/client'
+import { PrismaClient} from '@prisma/client'
 import * as faker from 'faker'
-
-const roomTypes: RoomType[] = [
-  'ACCESSIBLE',
-  'DOUBLE',
-  'SINGLE',
-  'DOUBLE',
-  'TRIPLE',
-  'STUDIO',
-  'SUITE',
-  'TWIN',
-  'QUEEN',
-  'QUAD',
-]
 
 const NUMBER_OF_USERS = 10
 const NUMBER_OF_ROOMS = 20
@@ -25,14 +12,6 @@ const rooms = Array.from({
   length: NUMBER_OF_ROOMS,
 }).map((_, i) => ({
   id: roomIds[i],
-  roomType:
-    // pick random room type
-    roomTypes[
-      faker.datatype.number({
-        min: 0,
-        max: roomTypes.length - 1,
-      })
-    ],
   price: faker.datatype.number({
     min: 50,
     max: 600,
@@ -114,7 +93,6 @@ export async function seed() {
             address: room.address,
             price: room.price,
             summary: room.summary,
-            roomType: room.roomType,
             media: {
               create: room.media,
             },
@@ -142,3 +120,5 @@ export async function seed() {
     await prisma.$disconnect()
   }
 }
+
+seed()
