@@ -85,20 +85,19 @@ export async function seed() {
   const prisma = new PrismaClient()
 
   try {
-    rooms.forEach(
-      async (room) =>
-        await prisma.room.create({
-          data: {
-            id: room.id,
-            address: room.address,
-            price: room.price,
-            summary: room.summary,
-            media: {
-              create: room.media,
-            },
+    for (let room of rooms) {
+      await prisma.room.create({
+        data: {
+          id: room.id,
+          address: room.address,
+          price: room.price,
+          summary: room.summary,
+          media: {
+            create: room.media,
           },
-        }),
-    )
+        },
+      })
+    }
 
     for (let entry of data) {
       await prisma.user.create({
