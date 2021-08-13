@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 const main = async () => {
   const accounts = await prisma.account.findMany({
     where: {
-      plan: 'PREMIUM',
+      isActive: true,
     },
   })
 
