@@ -25,14 +25,6 @@ const projects = [
 
 describe('Seed and run script', () => {
   test.each(projects)('$templateName against Postgres', async ({ templateName }) => {
-    /**
-     * cd to template
-     * install dependencies
-     * migrate reset
-     * db push,
-     * seed, 
-     * run dev script
-     */
     const options = { cwd: `../../${templateName}` }
 
     execa.commandSync(` yarn`, options)
