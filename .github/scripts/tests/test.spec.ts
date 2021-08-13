@@ -29,7 +29,7 @@ describe('Seed and run script', () => {
 
     execa.commandSync(` yarn`, execaConfig)
 
-    execa.commandSync(`yarn prisma migrate reset --force`, execaConfig)
+    execa.commandSync(`yarn prisma migrate reset --force --skip-seed`, execaConfig)
 
     const dbPush = execa.commandSync(`yarn prisma db push --schema prisma/schema.prisma`, execaConfig)
     expect(dbPush.exitCode).toBe(0)
