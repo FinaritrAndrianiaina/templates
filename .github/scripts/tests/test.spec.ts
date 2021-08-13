@@ -1,5 +1,4 @@
 import execa from 'execa'
-import * as FS from 'fs-jetpack'
 
 /**
  * TODO: Set up mysql test.yml
