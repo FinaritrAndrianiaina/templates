@@ -1,4 +1,5 @@
-import { PrismaClient} from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
+
 import * as faker from 'faker'
 
 const NUMBER_OF_USERS = 10
@@ -113,8 +114,9 @@ export async function seed() {
         },
       })
     }
-  } catch (error) {
-    console.error(error)
+  } catch (e) {
+    await prisma.$disconnect()
+    throw e
   } finally {
     await prisma.$disconnect()
   }
