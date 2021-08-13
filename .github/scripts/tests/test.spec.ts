@@ -34,7 +34,7 @@ describe('Seed and run script', () => {
     const dbPush = execa.commandSync(`yarn prisma db push --schema prisma/schema.prisma`, execaConfig)
     expect(dbPush.exitCode).toBe(0)
 
-    const seed = execa.commandSync(`yarn prisma db seed --preview-feature --schema prisma/schema.prisma`, execaConfig)
+    const seed = execa.commandSync(`yarn ts-node ./prisma/seed.ts`, execaConfig)
     expect(seed.exitCode).toBe(0)
 
     const script = execa.commandSync(`yarn run dev`, execaConfig)
