@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Prisma Examples</h1>
+  <h1>Prisma Schema Examples</h1>
   <p><h3 align="center">Ready-to-use Prisma schema examples 🚀</h3></p>
   <a href="https://www.prisma.io/">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
