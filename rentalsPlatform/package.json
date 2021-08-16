@@ -3,7 +3,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/faker": "5.5.8",
-    "@types/node": "15.14.7",
+    "@types/node": "16.6.1",
     "faker": "5.5.3",
     "prisma": "2.25.0",
     "ts-node": "10.2.0",
