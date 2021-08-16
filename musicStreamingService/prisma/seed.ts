@@ -105,5 +105,3 @@ export async function seed() {
     await prisma.$disconnect()
   }
 }
-
-seed()
